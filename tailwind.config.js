@@ -7,6 +7,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+      transitionProperty: {
+        'height': 'height'
+      },
+      colors: {
+        'navy-blue': '#0A192F',
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
