@@ -2,7 +2,7 @@
 
 export default function NumberedHeading({ headingText, headingNumber }: { headingText: string, headingNumber: number }) {
   return (
-    <div className="flex flex-row items-center">
+    <div className="flex flex-row items-center" id={`${headingText.replace(/\s/g, '' ).toLowerCase()}`}>
       <span className="flex-shrink mx-1 text-yellow-500">
         {headingNumber.toString().padStart(2, "0")}.
       </span>

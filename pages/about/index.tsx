@@ -7,9 +7,9 @@ const paragraphThree = `I believe in the power of continuous learning and strive
 const paragraphFour = `I am truly passionate about what I do, and I approach each project with dedication, creativity, and a solution-oriented mindset.`
 
 
-export default function AboutMe({ me }: { me: Me }) {
+export default function AboutMe({ me, className }: { me: Me, className?: string }) {
   return (
-    <div className="max-w-m rounded shadow-lg lg:w-1/2 lg:max-w-full lg:flex lg:flex-col">
+    <section className={className} id="about">
       <NumberedHeading headingText="About Me" headingNumber={1} />
       <div className="flex flex-col items-center">
         <div className="flex flex-col items-center gap-3">
@@ -25,13 +25,13 @@ export default function AboutMe({ me }: { me: Me }) {
               <p>{paragraphFour}</p>
               <br></br>
             </div>
-            <img src={me.photo} className="rounded w-80 h-80" />
+            {/* <img src={me.photo} className="rounded w-80 h-80" /> */}
           </div>
           <div className="flex flex-col items-start rounded shadow-lg bg-gray-700 p-2 w-full">
             <h3 className="text-m text-white">A few things on my tech stack:</h3>
             <div className="grid grid-cols-3 gap-5 w-full">
-              {me.about.skills.map((skill) => (
-                <div className="text-white flex flex-row items-center">
+              {me.about.skills.map((skill, index) => (
+                <div className="text-white flex flex-row items-center" key={`skill-${index}`}>
                   <p className="text-yellow-300 text-3xl">&#8226;  </p>{skill}
                 </div>
               ))}
@@ -39,6 +39,6 @@ export default function AboutMe({ me }: { me: Me }) {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   )
 }

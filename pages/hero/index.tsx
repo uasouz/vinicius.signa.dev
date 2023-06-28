@@ -1,8 +1,8 @@
 import { Me } from "../types/me";
 
-export default function Hero({me}:{me: Me}) {
+export default function Hero({me,className}:{me: Me, className?: string}) {
   return (
-      <div className="lg:w-1/2 xl:w-1/2 flex flex-col items-left py-9">
+      <div className={className}>
         <p className="text-3xl text-gray-400">Hi, my name is</p>
         <h1 className="text-7xl text-yellow-300">{me.name}</h1>
         <p className="text-4xl text-gray-400"> and I enjoy creating and delivering
