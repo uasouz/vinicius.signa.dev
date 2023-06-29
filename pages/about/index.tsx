@@ -27,16 +27,16 @@ export default function AboutMe({ me, className }: { me: Me, className?: string 
             </div>
             {/* <img src={me.photo} className="rounded w-80 h-80" /> */}
           </div>
-          <div className="flex flex-col items-start rounded shadow-lg bg-gray-700 p-2 w-full">
-            <h3 className="text-m text-white">A few things on my tech stack:</h3>
-            <div className="grid grid-cols-3 gap-5 w-full">
-              {me.about.skills.map((skill, index) => (
-                <div className="text-white flex flex-row items-center" key={`skill-${index}`}>
-                  <p className="text-yellow-300 text-3xl">&#8226;  </p>{skill}
-                </div>
-              ))}
-            </div>
-          </div>
+          {/* <div className="flex flex-col items-start rounded shadow-lg bg-gray-700 p-2 w-full"> */}
+          {/*   <h3 className="text-m text-white">A few things on my tech stack:</h3> */}
+          {/*   <div className="grid grid-cols-3 gap-5 w-full"> */}
+          {/*     {me.about.skills.map((skill, index) => ( */}
+          {/*       <div className="text-white flex flex-row items-center" key={`skill-${index}`}> */}
+          {/*         <p className="text-yellow-300 text-3xl">&#8226;  </p>{skill} */}
+          {/*       </div> */}
+          {/*     ))} */}
+          {/*   </div> */}
+          {/* </div> */}
         </div>
       </div>
     </section>
