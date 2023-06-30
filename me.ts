@@ -2,7 +2,7 @@
 export const me = {
   name: "Vinícius M. Lopes",
   nationality: "Brazilian",
-  photo: "uasouz",
+  photo: "https://github.com/uasouz.png",
   // photo: "https://avatars.githubusercontent.com/u/15662268?v=4",
   contact: {
     email: "vlopes45@gmail.com",
