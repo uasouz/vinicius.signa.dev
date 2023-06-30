@@ -31,7 +31,7 @@ export default function Experience({ me }: { me: Me }) {
             {
               me.experience.map((experience, index) => {
                 return (
-                  <button role="tab" className="p-3 border-b-2 overflow-hidden w-[120px] max-w-[120px]" onClick={() => { setCurrentExperience(index) }}>
+                  <button role="tab" key={`experience-${index}`} className="p-3 border-b-2 overflow-hidden w-[120px] max-w-[120px]" onClick={() => { setCurrentExperience(index) }}>
                     {experience.company}
                   </button>
                 )
@@ -50,7 +50,7 @@ export default function Experience({ me }: { me: Me }) {
           {me.experience[currentExperience].startDate} - {me.experience[currentExperience].endDate}
         </div>
         <ul className="list-disc list-outside p-5">
-          {me.experience[currentExperience].achievements.map((achievement) => <li>{achievement}</li>)}
+          {me.experience[currentExperience].achievements.map((achievement,index) => <li key={`achievement-${index}`}>{achievement}</li>)}
         </ul>
       </div>
     </div>

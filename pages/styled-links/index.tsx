@@ -12,7 +12,7 @@ export default function StyledLinks({ links, linkClassName = "text-yellow-300 p-
       <ol className={listClassName}>
         {links.map((link, index) => (
           <li id={`link-${index}`} key={`styled-link-${link.link}-${index}`} className={linkClassName}>
-            {(index + 1).toString().padStart(2, '0')}. <ScrollLink className="text-white hover:text-yellow-300" href={link.link}>{link.linkText}</ScrollLink>
+            <span className="text-2xl">{(index + 1).toString().padStart(2, '0')}</span>. <ScrollLink className="text-white hover:text-yellow-300 text-xl font-thin" href={link.link}>{link.linkText}</ScrollLink>
           </li>
         ))}
       </ol>
