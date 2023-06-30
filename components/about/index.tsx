@@ -1,5 +1,5 @@
-import NumberedHeading from "../components/NumberedHeading";
-import { Me } from "../types/me";
+import NumberedHeading from "../NumberedHeading";
+import { Me } from "../../types/me";
 
 const paragraphOne = `My name is Vinícius Lopes, and I am passionate about creating innovative solutions and solving complex problems. From a young age, I immersed myself in the digital world, delving into the realms of PHP, JavaScript, SQL, and HTML when I was just 11 years old. As my skills grew, I became increasingly fascinated by the fields of Cybersecurity and Game Development, which paved my path towards a career in IT.`
 const paragraphTwo = `Since then I found oportunities to learn and work with many technologies and impact the life of hundreds of thousand of people with the software developed on the companies I worked for.`

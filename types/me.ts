@@ -27,4 +27,6 @@ export interface Contact {
   github: string;
 }
 
+export default Me;
+
 

@@ -1,4 +1,4 @@
-import { Me } from "../types/me";
+import { Me } from "../../types/me";
 
 const introPartOne = "Hi, my name is"
 const introPartTwo = "and I enjoy creating and delivering digital products that make people's lives easier."

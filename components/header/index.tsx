@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import StyledLinks from '../styled-links'
-import GHLogo from '../components/GHLogo/logo';
+import GHLogo from '../GHLogo/logo';
 
 const links = [
   {

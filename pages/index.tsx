@@ -1,9 +1,9 @@
-import AboutMe from './about'
-import Hero from './hero'
-import { me } from './me'
-import StyledLinks from './styled-links'
-import XPCard from './components/xp-card'
-import NumberedHeading from './components/NumberedHeading'
+import AboutMe from '../components/about'
+import Hero from '../components/hero'
+import { me } from '../me'
+import StyledLinks from '../components/styled-links'
+import XPCard from '../components/xp-card'
+import NumberedHeading from '../components/NumberedHeading'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons'
@@ -21,11 +21,15 @@ const links = [
   }
 ]
 
+function profilePictureLoader({ src, width, quality }: {src: string, width: number, quality?: number | undefined}) {
+  return `https://github.com/${src}.png?size=${width}`
+}
+
 export default function Home() {
   return (
     <main className="bg-navy-blue max-h-screen h-screen overflow-x-hidden flex flex-col md:flex-row">
       <div className="flex flex-row md:flex-col items-center p-3 border-b-2 md:border-b-0 md:border-r-2 border-yellow-300 h-[64px] md:min-h-full md:h-full">
-        <Image src={me.photo} width={64} height={64} alt="me" className="rounded-full w-[32px] md:w-[64px] mr-8 md:mr-0 md:mb-8" />
+        <Image loader={profilePictureLoader} src={me.photo} width={64} height={64} alt="me" className="rounded-full w-[32px] md:w-[64px] mr-8 md:mr-0 md:mb-8" />
         <Link className="mr-8 md:mr-0 md:mb-8" target='_blank' href="https://github.com/uasouz" ><FontAwesomeIcon size="2x" className="text-yellow-300 hover:text-gray-300 text-xl md:text-3xl" icon={faGithub} /></Link>
         <Link className="mr-8 md:mr-0 md:mb-8" target='_blank' href="https://linkedin.com/in/vlopes45" ><FontAwesomeIcon size="2x" className="text-yellow-300 hover:text-gray-300 text-xl md:text-3xl" icon={faLinkedinIn} /></Link>
         <Link className="mr-8 md:mr-0 md:mb-8" target='_blank' href="mailto:vlopes45@gmail.com" ><FontAwesomeIcon size="2x" className="text-yellow-300 hover:text-gray-300 text-xl md:text-3xl" icon={faEnvelope} /></Link>

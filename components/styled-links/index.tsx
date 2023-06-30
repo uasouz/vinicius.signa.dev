@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ScrollLink from "../components/ScrollLink";
+import ScrollLink from "../ScrollLink";
 
 interface IStyledLink {
   linkText: string;

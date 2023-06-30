@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import NumberedHeading from "../components/NumberedHeading";
-import { Me } from "../types/me";
+import NumberedHeading from "../NumberedHeading";
+import { Me } from "../../types/me";
 
 export default function Experience({ me }: { me: Me }) {
 

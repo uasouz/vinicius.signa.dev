@@ -2,7 +2,8 @@
 export const me = {
   name: "Vinícius M. Lopes",
   nationality: "Brazilian",
-  photo: "https://avatars.githubusercontent.com/u/15662268?v=4",
+  photo: "uasouz",
+  // photo: "https://avatars.githubusercontent.com/u/15662268?v=4",
   contact: {
     email: "vlopes45@gmail.com",
     phone: "+55 11 9 9999-9999",
@@ -110,4 +111,4 @@ export const me = {
   ].reverse()
 }
 
-
+export default me 
