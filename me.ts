@@ -11,11 +11,11 @@ export const me = {
   },
   about: {
     description: "",
-//     description: `Olá, my name is Vinícius Lopes, i love to create things and solve problems.
-//                   My life in the digital world started really soon, at the age of 11 I found my self studying PHP, JavaScript, SQL and HTML. 
-//                   No much later I got really interested into CyberSecurity and Game development and found my path towards IT.
-//                   My professional career started at the age of 16, when I got my first job as a freelancer website developer, after that 
-// i have been in many projects as consultant and developer, working with many different technologies and languages.`,
+    //     description: `Olá, my name is Vinícius Lopes, i love to create things and solve problems.
+    //                   My life in the digital world started really soon, at the age of 11 I found my self studying PHP, JavaScript, SQL and HTML. 
+    //                   No much later I got really interested into CyberSecurity and Game development and found my path towards IT.
+    //                   My professional career started at the age of 16, when I got my first job as a freelancer website developer, after that 
+    // i have been in many projects as consultant and developer, working with many different technologies and languages.`,
     skills: [
       "Node.js",
       "TypeScript",
@@ -103,10 +103,23 @@ export const me = {
         "Delivered a scheduling system integrated to the platform that handles more than 200,000 users every week."
       ],
       startDate: "November/2019",
-      endDate: "Present",
+      endDate: "September/2023",
       location: "Brazil",
       technologies: ["AWS", "PostgreSQL", "MySQL", "Node.js",
         "TypeScript", "JavaScript", "Golang", "Python", "Terraform"]
+    },
+    {
+      title: "Software Developer",
+      company: "idwall",
+      achievements: [
+        "Worked on a team that architected and developed a set of backend services that allowed other teams in the organization to deliver more reliable, secure and uniform services with less effort and reducing the usual development time from 12 to 2 weeks",
+        "Collaborated with colleagues within and outside my team to enhance general software quality practices."
+      ],
+      startDate: "October/2023",
+      endDate: "Present",
+      location: "Brazil",
+      technologies: ["GCP", "PostgreSQL", "Java", "Spring Boot",
+        "TypeScript", "JavaScript", "Python"]
     }
   ].reverse()
 }
