@@ -2,7 +2,7 @@ import { Me } from "../../types/me";
 
 const introPartOne = "Hi, my name is"
 const introPartTwo = "and I enjoy creating and delivering digital products that make people's lives easier."
-const introPartThree = "I'm a Software Developer with knowledge in multiple languages and platforms, that had the opportunity to work in multiple areas of software development, from mobile to backend and leading great development teams."
+const introPartThree = "I'm a Software Developer with knowledge in multiple languages and platforms, who had the opportunity to work in various areas of software development, from mobile to backend, and have also led great development teams."
 
 
 export default function Hero({me,className}:{me: Me, className?: string}) {
