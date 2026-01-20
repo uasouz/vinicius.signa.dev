@@ -100,7 +100,7 @@ export default function CardPage() {
                   href={SITE_URL}
                   icon={faGlobe}
                   label="Website"
-                  value="vinicius.signa.dev"
+                  value="vinicius.signa.dev.br"
                   external
                 />
               </div>
@@ -118,7 +118,7 @@ export default function CardPage() {
                 />
               </div>
               <p className="text-alt-muted text-xs mt-3 text-center">Scan to visit</p>
-              <p className="text-alt-accent text-xs font-mono">vinicius.signa.dev</p>
+              <p className="text-alt-accent text-xs font-mono">vinicius.signa.dev.br</p>
             </div>
           </div>
         </div>

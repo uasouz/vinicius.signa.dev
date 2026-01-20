@@ -266,7 +266,7 @@ export default async function handler(req: NextRequest) {
                     fontFamily: 'monospace',
                   }}
                 >
-                  vinicius.signa.dev
+                  vinicius.signa.dev.br
                 </span>
               </div>
             </div>

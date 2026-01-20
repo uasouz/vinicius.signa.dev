@@ -1,5 +1,5 @@
 // Site configuration
-export const SITE_URL = 'https://vinicius.signa.dev'
+export const SITE_URL = 'https://vinicius.signa.dev.br'
 export const CV_PATH = 'Vinícius%20Lopes%20-%20Software%20Developer.pdf'
 
 // Social links
