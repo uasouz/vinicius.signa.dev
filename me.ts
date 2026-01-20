@@ -116,10 +116,23 @@ export const me = {
         "Collaborated with colleagues within and outside my team to enhance general software quality practices."
       ],
       startDate: "October/2023",
-      endDate: "Present",
+      endDate: "November/2025",
       location: "Brazil",
       technologies: ["GCP", "PostgreSQL", "Java", "Spring Boot",
         "TypeScript", "JavaScript", "Python"]
+    },
+    {
+      title: "Simulation Engineer",
+      company: "Matrices",
+      achievements: [
+        "Developed environments to enable safe and fast training of LLM models.",
+        "Collaborated closely with the founding team to review and optimize the platform's overall architecture, resulting in enhanced scalability."
+      ],
+      startDate: "November/2025",
+      endDate: "Present",
+      location: "US (Remote)",
+      technologies: ["PostgreSQL",
+        "TypeScript", "JavaScript", "React"]
     }
   ].reverse()
 }
