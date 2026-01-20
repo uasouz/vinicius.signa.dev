@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>OG Card Template - Screenshot this at 1200x630</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      width: 1200px;
+      height: 630px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: #0A192F;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    .card {
+      display: flex;
+      flex-direction: column;
+      background-color: #112240;
+      border-radius: 24px;
+      width: 1000px;
+      overflow: hidden;
+    }
+    .accent-bar {
+      height: 8px;
+      background: linear-gradient(to right, #fcd34d, #facc15, #fcd34d);
+    }
+    .content {
+      display: flex;
+      padding: 48px;
+    }
+    .left-side {
+      flex: 1;
+    }
+    .profile {
+      display: flex;
+      align-items: center;
+      margin-bottom: 32px;
+    }
+    .initials {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background-color: #fcd34d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 24px;
+      font-size: 42px;
+      font-weight: bold;
+      color: #0A192F;
+    }
+    .name {
+      font-size: 36px;
+      font-weight: bold;
+      color: #fcd34d;
+    }
+    .title {
+      font-size: 20px;
+      color: #8892b0;
+    }
+    .divider {
+      height: 1px;
+      background-color: #233554;
+      margin-bottom: 32px;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      background-color: rgba(10, 25, 47, 0.8);
+      padding: 16px;
+      border-radius: 12px;
+      margin-bottom: 12px;
+    }
+    .contact-item:last-child {
+      margin-bottom: 0;
+    }
+    .icon-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background-color: rgba(252, 211, 77, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fcd34d;
+      font-size: 20px;
+      font-weight: bold;
+      margin-right: 16px;
+    }
+    .contact-label {
+      font-size: 14px;
+      color: #8892b0;
+    }
+    .contact-value {
+      font-size: 18px;
+      color: #ccd6f6;
+    }
+    .right-side {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-left: 1px solid #233554;
+      padding-left: 48px;
+      margin-left: 48px;
+    }
+    .website-box {
+      width: 180px;
+      height: 180px;
+      background-color: #ffffff;
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .globe {
+      font-size: 64px;
+    }
+    .visit-text {
+      font-weight: bold;
+      color: #0A192F;
+      font-size: 16px;
+      margin-top: 8px;
+    }
+    .get-in-touch {
+      color: #8892b0;
+      font-size: 16px;
+      margin-top: 16px;
+    }
+    .site-url {
+      color: #fcd34d;
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="accent-bar"></div>
+    <div class="content">
+      <div class="left-side">
+        <div class="profile">
+          <div class="initials">VL</div>
+          <div>
+            <div class="name">Vinícius Lopes</div>
+            <div class="title">Software Developer</div>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="icon-circle">@</div>
+            <div>
+              <div class="contact-label">Email</div>
+              <div class="contact-value">vlopes45@gmail.com</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="icon-circle">G</div>
+            <div>
+              <div class="contact-label">GitHub</div>
+              <div class="contact-value">@uasouz</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="icon-circle">in</div>
+            <div>
+              <div class="contact-label">LinkedIn</div>
+              <div class="contact-value">/in/vlopes45</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="right-side">
+        <div class="website-box">
+          <div class="globe">🌐</div>
+          <div class="visit-text">Visit my</div>
+          <div class="visit-text">website</div>
+        </div>
+        <div class="get-in-touch">Get in touch</div>
+        <div class="site-url">vinicius.signa.dev.br</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

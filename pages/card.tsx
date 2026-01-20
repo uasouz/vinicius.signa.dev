@@ -9,7 +9,8 @@ import ContactLink from '../components/v2/contact-link'
 import { SITE_URL, SOCIAL_LINKS } from '../constants/content'
 
 const cardUrl = `${SITE_URL}/card`
-const ogImageUrl = `${SITE_URL}/api/og-card`
+// Static OG image - place og-card.png (1200x630) in /public folder
+const ogImageUrl = `${SITE_URL}/og-card.png`
 
 export default function CardPage() {
   return (
