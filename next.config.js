@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "export",
   reactStrictMode: true,
   images: {
     unoptimized: true,
@@ -16,7 +17,7 @@ const nextConfig = {
         port: '',
         pathname: '/uasouz.png',
       }
-      ]
+    ]
   }
 }
 
