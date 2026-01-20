@@ -1,6 +1,7 @@
 
 export interface Me {
   name: string;
+  nationality: string;
   about: About;
   photo: string;
   experience: Experience[];

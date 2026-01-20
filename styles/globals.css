@@ -40,3 +40,29 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+/* V2 Modern Styles */
+@layer components {
+  .v2-glass {
+    @apply backdrop-blur-md bg-v2-dark/80;
+  }
+
+  .v2-text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-v2-accent to-blue-400;
+  }
+
+  .v2-card-hover {
+    @apply transition-all duration-300 hover:border-v2-accent/30 hover:shadow-lg hover:shadow-v2-accent/5;
+  }
+}
+
+/* Smooth scroll for v2 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom selection color for v2 */
+::selection {
+  background-color: rgba(96, 165, 250, 0.3);
+  color: white;
+}
