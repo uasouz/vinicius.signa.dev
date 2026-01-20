@@ -1,8 +1,5 @@
 import { Me } from "../../types/me"
-
-const introPartOne = "Hi, my name is"
-const introPartTwo = "I enjoy creating and delivering digital products that make people's lives easier."
-const introPartThree = "I'm a Software Developer with knowledge in multiple languages and platforms, who had the opportunity to work in various areas of software development, from mobile to backend, and have also led great development teams."
+import { HERO_TEXT } from "../../constants/content"
 
 interface HeroV2Props {
   me: Me
@@ -16,7 +13,7 @@ export default function HeroV2({ me, className, onGetInTouch }: HeroV2Props) {
       <div className="max-w-3xl">
         {/* Text content */}
         <p className="text-alt-accent font-mono text-sm md:text-base mb-4 animate-fade-in" style={{ animationDelay: '0.1s' }}>
-          {introPartOne}
+          {HERO_TEXT.greeting}
         </p>
 
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-alt-accent mb-4 animate-slide-up" style={{ animationDelay: '0.2s' }}>
@@ -24,11 +21,11 @@ export default function HeroV2({ me, className, onGetInTouch }: HeroV2Props) {
         </h1>
 
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-alt-muted mb-6 animate-slide-up" style={{ animationDelay: '0.3s' }}>
-          {introPartTwo}
+          {HERO_TEXT.tagline}
         </h2>
 
         <p className="text-alt-muted text-base md:text-lg max-w-2xl leading-relaxed animate-slide-up" style={{ animationDelay: '0.4s' }}>
-          {introPartThree}
+          {HERO_TEXT.description}
         </p>
 
         {/* CTA buttons */}

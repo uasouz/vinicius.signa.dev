@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons'
 import { faEnvelope, faPhone, faGlobe, faShare, faXmark, faCheck } from '@fortawesome/free-solid-svg-icons'
 import { QRCodeSVG } from 'qrcode.react'
+import ContactLink from './contact-link'
 
 interface VisitCardProps {
   isOpen: boolean
@@ -111,85 +112,46 @@ export default function VisitCard({
 
                 {/* Contact links */}
                 <div className="space-y-2">
-                  <a
+                  <ContactLink
                     href={`mailto:${email}`}
-                    className="flex items-center gap-3 p-2.5 rounded-lg bg-alt-dark/50 hover:bg-alt-card-hover transition-colors group"
-                  >
-                    <div className="w-9 h-9 rounded-full bg-alt-accent/10 flex items-center justify-center">
-                      <FontAwesomeIcon icon={faEnvelope} className="w-3.5 h-3.5 text-alt-accent" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-xs text-alt-muted">Email</p>
-                      <p className="text-sm text-alt-light truncate group-hover:text-alt-accent transition-colors">{email}</p>
-                    </div>
-                  </a>
+                    icon={faEnvelope}
+                    label="Email"
+                    value={email}
+                  />
 
                   {phone && (
-                    <a
+                    <ContactLink
                       href={`tel:${phone}`}
-                      className="flex items-center gap-3 p-2.5 rounded-lg bg-alt-dark/50 hover:bg-alt-card-hover transition-colors group"
-                    >
-                      <div className="w-9 h-9 rounded-full bg-alt-accent/10 flex items-center justify-center">
-                        <FontAwesomeIcon icon={faPhone} className="w-3.5 h-3.5 text-alt-accent" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-xs text-alt-muted">Phone</p>
-                        <p className="text-sm text-alt-light truncate group-hover:text-alt-accent transition-colors">{phone}</p>
-                      </div>
-                    </a>
+                      icon={faPhone}
+                      label="Phone"
+                      value={phone}
+                    />
                   )}
 
-                  <a
+                  <ContactLink
                     href={github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 p-2.5 rounded-lg bg-alt-dark/50 hover:bg-alt-card-hover transition-colors group"
-                  >
-                    <div className="w-9 h-9 rounded-full bg-alt-accent/10 flex items-center justify-center">
-                      <FontAwesomeIcon icon={faGithub} className="w-3.5 h-3.5 text-alt-accent" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-xs text-alt-muted">GitHub</p>
-                      <p className="text-sm text-alt-light truncate group-hover:text-alt-accent transition-colors">
-                        {github.replace('https://github.com/', '@')}
-                      </p>
-                    </div>
-                  </a>
+                    icon={faGithub}
+                    label="GitHub"
+                    value={github.replace('https://github.com/', '@')}
+                    external
+                  />
 
-                  <a
+                  <ContactLink
                     href={linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 p-2.5 rounded-lg bg-alt-dark/50 hover:bg-alt-card-hover transition-colors group"
-                  >
-                    <div className="w-9 h-9 rounded-full bg-alt-accent/10 flex items-center justify-center">
-                      <FontAwesomeIcon icon={faLinkedinIn} className="w-3.5 h-3.5 text-alt-accent" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-xs text-alt-muted">LinkedIn</p>
-                      <p className="text-sm text-alt-light truncate group-hover:text-alt-accent transition-colors">
-                        {linkedin.replace('https://linkedin.com/in/', '/in/')}
-                      </p>
-                    </div>
-                  </a>
+                    icon={faLinkedinIn}
+                    label="LinkedIn"
+                    value={linkedin.replace('https://linkedin.com/in/', '/in/')}
+                    external
+                  />
 
                   {website && (
-                    <a
+                    <ContactLink
                       href={website}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-3 p-2.5 rounded-lg bg-alt-dark/50 hover:bg-alt-card-hover transition-colors group"
-                    >
-                      <div className="w-9 h-9 rounded-full bg-alt-accent/10 flex items-center justify-center">
-                        <FontAwesomeIcon icon={faGlobe} className="w-3.5 h-3.5 text-alt-accent" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-xs text-alt-muted">Website</p>
-                        <p className="text-sm text-alt-light truncate group-hover:text-alt-accent transition-colors">
-                          {website.replace('https://', '').replace('http://', '')}
-                        </p>
-                      </div>
-                    </a>
+                      icon={faGlobe}
+                      label="Website"
+                      value={website.replace('https://', '').replace('http://', '')}
+                      external
+                    />
                   )}
                 </div>
               </div>

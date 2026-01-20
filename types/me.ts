@@ -4,6 +4,7 @@ export interface Me {
   nationality: string;
   about: About;
   photo: string;
+  contact: Contact;
   experience: Experience[];
 }
 
