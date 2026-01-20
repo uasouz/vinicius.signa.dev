@@ -1,8 +1,7 @@
-import { useRef } from 'react'
+import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons'
-import { faEnvelope, faPhone, faGlobe, faDownload, faXmark } from '@fortawesome/free-solid-svg-icons'
-import html2canvas from 'html2canvas'
+import { faEnvelope, faPhone, faGlobe, faShare, faXmark, faCheck } from '@fortawesome/free-solid-svg-icons'
 import { QRCodeSVG } from 'qrcode.react'
 
 interface VisitCardProps {
@@ -32,49 +31,31 @@ export default function VisitCard({
   siteUrl,
   photo
 }: VisitCardProps) {
-  const cardRef = useRef<HTMLDivElement>(null)
+  const [copied, setCopied] = useState(false)
+  const shareUrl = `${siteUrl}/card`
 
-  const exportAsPng = async () => {
-    if (!cardRef.current) return
-
-    try {
-      // Convert profile image to base64 to avoid CORS issues
-      const profileImg = cardRef.current.querySelector('img[data-profile]') as HTMLImageElement
-      if (profileImg) {
-        const imgCanvas = document.createElement('canvas')
-        imgCanvas.width = 160
-        imgCanvas.height = 160
-        const ctx = imgCanvas.getContext('2d')
-
-        // Create a new image with crossOrigin to fetch it properly
-        const tempImg = new window.Image()
-        tempImg.crossOrigin = 'anonymous'
-
-        await new Promise<void>((resolve) => {
-          tempImg.onload = () => {
-            ctx?.drawImage(tempImg, 0, 0, 160, 160)
-            profileImg.src = imgCanvas.toDataURL('image/png')
-            resolve()
-          }
-          tempImg.onerror = () => resolve()
-          tempImg.src = profileImg.src
+  const handleShare = async () => {
+    // Try native share API first (works on mobile)
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: `${name} | Software Developer`,
+          text: 'Check out my contact card!',
+          url: shareUrl,
         })
+        return
+      } catch (err) {
+        // User cancelled or share failed, fall back to copy
       }
+    }
 
-      const canvas = await html2canvas(cardRef.current, {
-        backgroundColor: '#112240',
-        scale: 2,
-        logging: false,
-        useCORS: true,
-        allowTaint: true,
-      })
-
-      const link = document.createElement('a')
-      link.download = `${name.replace(/\s+/g, '_')}_contact.png`
-      link.href = canvas.toDataURL('image/png')
-      link.click()
-    } catch (error) {
-      console.error('Error exporting card:', error)
+    // Fall back to copying to clipboard
+    try {
+      await navigator.clipboard.writeText(shareUrl)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch (err) {
+      console.error('Failed to copy:', err)
     }
   }
 
@@ -100,14 +81,9 @@ export default function VisitCard({
         </button>
 
         {/* Card */}
-        <div
-          ref={cardRef}
-          data-card
-          className="bg-alt-card rounded-2xl overflow-hidden shadow-2xl border border-alt-border"
-          style={{ backgroundColor: '#112240' }}
-        >
+        <div className="bg-alt-card rounded-2xl overflow-hidden shadow-2xl border border-alt-border">
           {/* Header with accent bar */}
-          <div className="h-2 bg-gradient-to-r from-alt-accent via-yellow-400 to-alt-accent" style={{ background: 'linear-gradient(to right, #fcd34d, #facc15, #fcd34d)' }} />
+          <div className="h-2 bg-gradient-to-r from-alt-accent via-yellow-400 to-alt-accent" />
 
           <div className="p-6 sm:p-8">
             <div className="flex flex-col sm:flex-row gap-6">
@@ -116,39 +92,35 @@ export default function VisitCard({
                 {/* Profile section */}
                 <div className="flex items-center gap-4 mb-5">
                   <div className="relative flex-shrink-0">
-                    {/* Use img for better html2canvas compatibility */}
                     <img
-                      data-profile
                       src={`${photo}?size=128`}
                       width={80}
                       height={80}
                       alt={name}
                       className="w-20 h-20 rounded-full object-cover ring-2 ring-alt-accent/50"
-                      style={{ borderRadius: '9999px', width: '80px', height: '80px' }}
                     />
                   </div>
                   <div>
-                    <h2 className="text-xl sm:text-2xl font-bold text-alt-accent" style={{ color: '#fcd34d' }}>{name}</h2>
-                    <p className="text-alt-muted text-sm" style={{ color: '#8892b0' }}>{title}</p>
+                    <h2 className="text-xl sm:text-2xl font-bold text-alt-accent">{name}</h2>
+                    <p className="text-alt-muted text-sm">{title}</p>
                   </div>
                 </div>
 
                 {/* Divider */}
-                <div className="h-px bg-alt-border mb-5" style={{ backgroundColor: '#233554' }} />
+                <div className="h-px bg-alt-border mb-5" />
 
                 {/* Contact links */}
                 <div className="space-y-2">
                   <a
                     href={`mailto:${email}`}
                     className="flex items-center gap-3 p-2.5 rounded-lg bg-alt-dark/50 hover:bg-alt-card-hover transition-colors group"
-                    style={{ backgroundColor: 'rgba(10, 25, 47, 0.5)', borderRadius: '0.5rem' }}
                   >
-                    <div className="w-9 h-9 rounded-full bg-alt-accent/10 flex items-center justify-center" style={{ backgroundColor: 'rgba(252, 211, 77, 0.1)', borderRadius: '9999px' }}>
-                      <FontAwesomeIcon icon={faEnvelope} className="w-3.5 h-3.5 text-alt-accent" style={{ color: '#fcd34d' }} />
+                    <div className="w-9 h-9 rounded-full bg-alt-accent/10 flex items-center justify-center">
+                      <FontAwesomeIcon icon={faEnvelope} className="w-3.5 h-3.5 text-alt-accent" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-xs text-alt-muted" style={{ color: '#8892b0', fontSize: '0.75rem' }}>Email</p>
-                      <p className="text-sm text-alt-light truncate group-hover:text-alt-accent transition-colors" style={{ color: '#ccd6f6', fontSize: '0.875rem' }}>{email}</p>
+                      <p className="text-xs text-alt-muted">Email</p>
+                      <p className="text-sm text-alt-light truncate group-hover:text-alt-accent transition-colors">{email}</p>
                     </div>
                   </a>
 
@@ -156,14 +128,13 @@ export default function VisitCard({
                     <a
                       href={`tel:${phone}`}
                       className="flex items-center gap-3 p-2.5 rounded-lg bg-alt-dark/50 hover:bg-alt-card-hover transition-colors group"
-                      style={{ backgroundColor: 'rgba(10, 25, 47, 0.5)', borderRadius: '0.5rem' }}
                     >
-                      <div className="w-9 h-9 rounded-full bg-alt-accent/10 flex items-center justify-center" style={{ backgroundColor: 'rgba(252, 211, 77, 0.1)', borderRadius: '9999px' }}>
-                        <FontAwesomeIcon icon={faPhone} className="w-3.5 h-3.5 text-alt-accent" style={{ color: '#fcd34d' }} />
+                      <div className="w-9 h-9 rounded-full bg-alt-accent/10 flex items-center justify-center">
+                        <FontAwesomeIcon icon={faPhone} className="w-3.5 h-3.5 text-alt-accent" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-xs text-alt-muted" style={{ color: '#8892b0', fontSize: '0.75rem' }}>Phone</p>
-                        <p className="text-sm text-alt-light truncate group-hover:text-alt-accent transition-colors" style={{ color: '#ccd6f6', fontSize: '0.875rem' }}>{phone}</p>
+                        <p className="text-xs text-alt-muted">Phone</p>
+                        <p className="text-sm text-alt-light truncate group-hover:text-alt-accent transition-colors">{phone}</p>
                       </div>
                     </a>
                   )}
@@ -173,14 +144,13 @@ export default function VisitCard({
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 p-2.5 rounded-lg bg-alt-dark/50 hover:bg-alt-card-hover transition-colors group"
-                    style={{ backgroundColor: 'rgba(10, 25, 47, 0.5)', borderRadius: '0.5rem' }}
                   >
-                    <div className="w-9 h-9 rounded-full bg-alt-accent/10 flex items-center justify-center" style={{ backgroundColor: 'rgba(252, 211, 77, 0.1)', borderRadius: '9999px' }}>
-                      <FontAwesomeIcon icon={faGithub} className="w-3.5 h-3.5 text-alt-accent" style={{ color: '#fcd34d' }} />
+                    <div className="w-9 h-9 rounded-full bg-alt-accent/10 flex items-center justify-center">
+                      <FontAwesomeIcon icon={faGithub} className="w-3.5 h-3.5 text-alt-accent" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-xs text-alt-muted" style={{ color: '#8892b0', fontSize: '0.75rem' }}>GitHub</p>
-                      <p className="text-sm text-alt-light truncate group-hover:text-alt-accent transition-colors" style={{ color: '#ccd6f6', fontSize: '0.875rem' }}>
+                      <p className="text-xs text-alt-muted">GitHub</p>
+                      <p className="text-sm text-alt-light truncate group-hover:text-alt-accent transition-colors">
                         {github.replace('https://github.com/', '@')}
                       </p>
                     </div>
@@ -191,14 +161,13 @@ export default function VisitCard({
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 p-2.5 rounded-lg bg-alt-dark/50 hover:bg-alt-card-hover transition-colors group"
-                    style={{ backgroundColor: 'rgba(10, 25, 47, 0.5)', borderRadius: '0.5rem' }}
                   >
-                    <div className="w-9 h-9 rounded-full bg-alt-accent/10 flex items-center justify-center" style={{ backgroundColor: 'rgba(252, 211, 77, 0.1)', borderRadius: '9999px' }}>
-                      <FontAwesomeIcon icon={faLinkedinIn} className="w-3.5 h-3.5 text-alt-accent" style={{ color: '#fcd34d' }} />
+                    <div className="w-9 h-9 rounded-full bg-alt-accent/10 flex items-center justify-center">
+                      <FontAwesomeIcon icon={faLinkedinIn} className="w-3.5 h-3.5 text-alt-accent" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-xs text-alt-muted" style={{ color: '#8892b0', fontSize: '0.75rem' }}>LinkedIn</p>
-                      <p className="text-sm text-alt-light truncate group-hover:text-alt-accent transition-colors" style={{ color: '#ccd6f6', fontSize: '0.875rem' }}>
+                      <p className="text-xs text-alt-muted">LinkedIn</p>
+                      <p className="text-sm text-alt-light truncate group-hover:text-alt-accent transition-colors">
                         {linkedin.replace('https://linkedin.com/in/', '/in/')}
                       </p>
                     </div>
@@ -210,14 +179,13 @@ export default function VisitCard({
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-3 p-2.5 rounded-lg bg-alt-dark/50 hover:bg-alt-card-hover transition-colors group"
-                      style={{ backgroundColor: 'rgba(10, 25, 47, 0.5)', borderRadius: '0.5rem' }}
                     >
-                      <div className="w-9 h-9 rounded-full bg-alt-accent/10 flex items-center justify-center" style={{ backgroundColor: 'rgba(252, 211, 77, 0.1)', borderRadius: '9999px' }}>
-                        <FontAwesomeIcon icon={faGlobe} className="w-3.5 h-3.5 text-alt-accent" style={{ color: '#fcd34d' }} />
+                      <div className="w-9 h-9 rounded-full bg-alt-accent/10 flex items-center justify-center">
+                        <FontAwesomeIcon icon={faGlobe} className="w-3.5 h-3.5 text-alt-accent" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-xs text-alt-muted" style={{ color: '#8892b0', fontSize: '0.75rem' }}>Website</p>
-                        <p className="text-sm text-alt-light truncate group-hover:text-alt-accent transition-colors" style={{ color: '#ccd6f6', fontSize: '0.875rem' }}>
+                        <p className="text-xs text-alt-muted">Website</p>
+                        <p className="text-sm text-alt-light truncate group-hover:text-alt-accent transition-colors">
                           {website.replace('https://', '').replace('http://', '')}
                         </p>
                       </div>
@@ -227,8 +195,8 @@ export default function VisitCard({
               </div>
 
               {/* Right side - QR Code */}
-              <div className="flex flex-col items-center justify-center sm:border-l sm:border-alt-border sm:pl-6" style={{ borderColor: '#233554' }}>
-                <div className="bg-white p-3 rounded-xl" style={{ backgroundColor: '#ffffff', borderRadius: '0.75rem', padding: '0.75rem' }}>
+              <div className="flex flex-col items-center justify-center sm:border-l sm:border-alt-border sm:pl-6">
+                <div className="bg-white p-3 rounded-xl">
                   <QRCodeSVG
                     value={siteUrl}
                     size={140}
@@ -237,20 +205,20 @@ export default function VisitCard({
                     level="M"
                   />
                 </div>
-                <p className="text-alt-muted text-xs mt-3 text-center" style={{ color: '#8892b0', fontSize: '0.75rem', marginTop: '0.75rem' }}>Scan to visit</p>
-                <p className="text-alt-accent text-xs font-mono" style={{ color: '#fcd34d', fontSize: '0.75rem' }}>{siteUrl.replace('https://', '')}</p>
+                <p className="text-alt-muted text-xs mt-3 text-center">Scan to visit</p>
+                <p className="text-alt-accent text-xs font-mono">{siteUrl.replace('https://', '')}</p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Export button - outside the card for cleaner export */}
+        {/* Share button */}
         <button
-          onClick={exportAsPng}
+          onClick={handleShare}
           className="mt-4 w-full flex items-center justify-center gap-2 px-4 py-3 bg-alt-accent text-alt-dark font-semibold rounded-lg hover:bg-alt-accent-hover transition-all duration-300"
         >
-          <FontAwesomeIcon icon={faDownload} className="w-4 h-4" />
-          Export as PNG
+          <FontAwesomeIcon icon={copied ? faCheck : faShare} className="w-4 h-4" />
+          {copied ? 'Link Copied!' : 'Share Card'}
         </button>
       </div>
     </div>
