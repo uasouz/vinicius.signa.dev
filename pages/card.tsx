@@ -3,12 +3,13 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons'
-import { faEnvelope, faPhone, faGlobe, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { faEnvelope, faGlobe, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { QRCodeSVG } from 'qrcode.react'
+import ContactLink from '../components/v2/contact-link'
+import { SITE_URL, SOCIAL_LINKS } from '../constants/content'
 
-const siteUrl = 'https://vinicius.signa.dev'
-const cardUrl = `${siteUrl}/card`
-const ogImageUrl = `${siteUrl}/api/og-card`
+const cardUrl = `${SITE_URL}/card`
+const ogImageUrl = `${SITE_URL}/api/og-card`
 
 export default function CardPage() {
   return (
@@ -75,69 +76,33 @@ export default function CardPage() {
 
               {/* Contact links */}
               <div className="space-y-2">
-                <a
+                <ContactLink
                   href={`mailto:${me.contact.email}`}
-                  className="flex items-center gap-3 p-2.5 rounded-lg bg-alt-dark/50 hover:bg-alt-card-hover transition-colors group"
-                >
-                  <div className="w-9 h-9 rounded-full bg-alt-accent/10 flex items-center justify-center">
-                    <FontAwesomeIcon icon={faEnvelope} className="w-3.5 h-3.5 text-alt-accent" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-xs text-alt-muted">Email</p>
-                    <p className="text-sm text-alt-light truncate group-hover:text-alt-accent transition-colors">{me.contact.email}</p>
-                  </div>
-                </a>
-
-                <a
-                  href="https://github.com/uasouz"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-2.5 rounded-lg bg-alt-dark/50 hover:bg-alt-card-hover transition-colors group"
-                >
-                  <div className="w-9 h-9 rounded-full bg-alt-accent/10 flex items-center justify-center">
-                    <FontAwesomeIcon icon={faGithub} className="w-3.5 h-3.5 text-alt-accent" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-xs text-alt-muted">GitHub</p>
-                    <p className="text-sm text-alt-light truncate group-hover:text-alt-accent transition-colors">
-                      @uasouz
-                    </p>
-                  </div>
-                </a>
-
-                <a
-                  href="https://linkedin.com/in/vlopes45"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-2.5 rounded-lg bg-alt-dark/50 hover:bg-alt-card-hover transition-colors group"
-                >
-                  <div className="w-9 h-9 rounded-full bg-alt-accent/10 flex items-center justify-center">
-                    <FontAwesomeIcon icon={faLinkedinIn} className="w-3.5 h-3.5 text-alt-accent" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-xs text-alt-muted">LinkedIn</p>
-                    <p className="text-sm text-alt-light truncate group-hover:text-alt-accent transition-colors">
-                      /in/vlopes45
-                    </p>
-                  </div>
-                </a>
-
-                <a
-                  href={siteUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-2.5 rounded-lg bg-alt-dark/50 hover:bg-alt-card-hover transition-colors group"
-                >
-                  <div className="w-9 h-9 rounded-full bg-alt-accent/10 flex items-center justify-center">
-                    <FontAwesomeIcon icon={faGlobe} className="w-3.5 h-3.5 text-alt-accent" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-xs text-alt-muted">Website</p>
-                    <p className="text-sm text-alt-light truncate group-hover:text-alt-accent transition-colors">
-                      vinicius.signa.dev
-                    </p>
-                  </div>
-                </a>
+                  icon={faEnvelope}
+                  label="Email"
+                  value={me.contact.email}
+                />
+                <ContactLink
+                  href={SOCIAL_LINKS.github}
+                  icon={faGithub}
+                  label="GitHub"
+                  value="@uasouz"
+                  external
+                />
+                <ContactLink
+                  href={SOCIAL_LINKS.linkedin}
+                  icon={faLinkedinIn}
+                  label="LinkedIn"
+                  value="/in/vlopes45"
+                  external
+                />
+                <ContactLink
+                  href={SITE_URL}
+                  icon={faGlobe}
+                  label="Website"
+                  value="vinicius.signa.dev"
+                  external
+                />
               </div>
             </div>
 
@@ -145,7 +110,7 @@ export default function CardPage() {
             <div className="flex flex-col items-center justify-center sm:border-l sm:border-alt-border sm:pl-6">
               <div className="bg-white p-3 rounded-xl">
                 <QRCodeSVG
-                  value={siteUrl}
+                  value={SITE_URL}
                   size={140}
                   bgColor="#ffffff"
                   fgColor="#0A192F"

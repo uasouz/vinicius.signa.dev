@@ -1,12 +1,7 @@
 import { Me } from "../../types/me"
+import { ABOUT_TEXT } from "../../constants/content"
 
-const paragraphOne = `My name is Vinícius Lopes, and I am passionate about creating innovative solutions and solving complex problems. From a young age, I immersed myself in the digital world, delving into the realms of PHP, JavaScript, SQL, and HTML when I was just 11 years old.`
-
-const paragraphTwo = `As my skills grew, I became increasingly fascinated by the fields of Cybersecurity and Game Development, which paved my path towards a career in IT. Since then I found opportunities to learn and work with many technologies and impact the life of hundreds of thousands of people with the software developed on the companies I worked for.`
-
-const paragraphThree = `I believe in the power of continuous learning and strive to enhance my expertise in order to deliver cutting-edge solutions that meet the ever-evolving demands of the digital landscape in a scalable, responsible and safe way.`
-
-export default function AboutAlt({ me, className }: { me: Me, className?: string }) {
+export default function AboutV2({ me, className }: { me: Me, className?: string }) {
   return (
     <div className={`mt-8 ${className || ''}`}>
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
@@ -14,17 +9,13 @@ export default function AboutAlt({ me, className }: { me: Me, className?: string
         <div className="lg:col-span-8">
           <div className="space-y-6 text-alt-muted">
             <p className="text-lg leading-relaxed">
-              <span className="text-alt-accent text-2xl font-semibold">Olá!</span>
+              <span className="text-alt-accent text-2xl font-semibold">{ABOUT_TEXT.title}</span>
             </p>
-            <p className="text-base md:text-lg leading-relaxed">
-              {paragraphOne}
-            </p>
-            <p className="text-base md:text-lg leading-relaxed">
-              {paragraphTwo}
-            </p>
-            <p className="text-base md:text-lg leading-relaxed">
-              {paragraphThree}
-            </p>
+            {ABOUT_TEXT.paragraphs.map((paragraph, index) => (
+              <p key={index} className="text-base md:text-lg leading-relaxed">
+                {paragraph}
+              </p>
+            ))}
           </div>
         </div>
 
